@@ -1,17 +1,23 @@
 {
     "dir": "ltr",
-    "lang": "en",
+    "lang": "es",
     "name": "Food Diary",
     "scope": "/food-diary/",
-    "display": "browser",
+    "display": "standalone",
     "start_url": "https://iagolast.github.io/food-diary/",
     "short_name": "Food Diary",
     "theme_color": "transparent",
     "description": "App to track food consumption",
-    "orientation": "any",
+    "orientation": "portrait",
     "background_color": "transparent",
     "related_applications": "",
     "prefer_related_applications": "false",
     "generated": "true",
-    "icons": []
+    "icons": [
+        {
+            "src": "img/icon.png",
+            "type": "image/png",
+            "sizes": "128x128"
+          }
+    ]
 }
