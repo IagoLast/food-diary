@@ -1,11 +1,11 @@
-import localStorageService from './localStorage.service.js';
+import storageService from './firebaseStorage.service.js';
 
 export async function fetch() {
-	return localStorageService.fetch();
+	return storageService.fetch();
 }
 
 export async function add(item) {
-	return localStorageService.add(item);
+	return storageService.add(item);
 }
 
 export default { fetch, add };

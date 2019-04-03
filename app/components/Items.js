@@ -23,22 +23,44 @@ export default class Items extends HTMLElement {
 
 	render() {
 		this.innerHTML = '';
-		this._items.forEach(item => this._renderItem(item));
+		const days = this._splitByDay(this._items);
+		for (const day in days) {
+			this._renderDay(days[day]);
+		}
 	}
 
-	_renderItem(item) {
-		const article = this._createArticle(item);
-		this.appendChild(article);
+	_renderDay(data) {
+		const $day = this._createArticle(data);
+		this.appendChild($day);
 	}
 
-	_createArticle(item) {
+	_createArticle(data) {
 		const article = document.createElement('article');
-		article.classList.add('food-item');
+		article.classList.add('day');
 		article.innerHTML = `
-			<img src="${item.image}" >
-			${item.date ? `<p> ${new Date(item.date).toLocaleString()} </p>`: ''}
+			<time class="date">
+				${data.day}
+			</time>
+			<div class="media">
+				${data.images.map(image => `<img src="${image}">`).join('')}
+			</div>
 		`;
 		return article;
+	}
+
+	_splitByDay(items) {
+		const days = [];
+		for (const item of items) {
+			const date = new Date(item.date);
+			date.setHours(0, 0, 0, 0);
+			const key = date.toLocaleDateString();
+			if (days[key]) {
+				days[key].images.push(item.image);
+			} else {
+				days[key] = { day: key, images: [item.image] };
+			}
+		}
+		return days;
 	}
 }
 

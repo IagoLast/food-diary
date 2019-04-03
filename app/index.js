@@ -19,19 +19,12 @@ async function _renderItems() {
 }
 
 function _onFileChanged() {
-	const reader = new FileReader();
-	reader.onload = e => {
-		const file = e.target.result;
-		if (!file) {
-			return;
-		}
-		_submit(file);
-	};
-	reader.readAsDataURL($file.files[0]);
+	const file = $file.files[0];
+	_submit(file);
 }
 
 async function _submit(file) {
-	await dataService.add({ image: file, date: Date.now() });
+	await dataService.add(file);
 	_resetForm();
 	_renderItems();
 }

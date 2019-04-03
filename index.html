@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="esg">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,19 @@
     <title>Food Diary</title>
     <script type="module" src="app/index.js"></script>
     <link rel="manifest" href="manifest.json">
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA9MzbpwwZGC69TjUBWYiHLNe59Ps1qm-I",
+            authDomain: "proyecto-generico-205719.firebaseapp.com",
+            databaseURL: "https://proyecto-generico-205719.firebaseio.com",
+            projectId: "proyecto-generico-205719",
+            storageBucket: "gs://proyecto-generico-205719.appspot.com",
+            messagingSenderId: "667723889099"
+        };
+        firebase.initializeApp(config);
+    </script>
     <style>
         * {
             box-sizing: border-box;
@@ -43,27 +56,37 @@
         }
 
         main {
-            padding: 0 24px;
+            position: absolute;
+            top: 72px;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            padding: 4px 24px;
+            overflow: auto;
         }
 
         form input[type="file"] {
             display: none;
         }
 
-        .food-item {
+        food-items {
             display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            justify-content: space-between;
+            flex-direction: column-reverse;
         }
 
-        .food-item img {
+        .day .date {
+            display: block;
+            margin: 16px 0 4px 0;
+        }
+
+        .day .media {
             display: flex;
-            width: 80px;
-            height: 80px;
-            margin-right: 24px;
-            border: 1px solid #f2f2f2;
-            border-radius: 8px;
+            overflow: auto;
+            flex-direction: row-reverse;
+        }
+
+        .day img {
+            max-height: 100px;
         }
 
         footer {
@@ -99,7 +122,6 @@
     </header>
 
     <main>
-        <h2>Content</h2>
         <food-items></food-items>
     </main>
 
